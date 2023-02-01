@@ -1,23 +1,21 @@
 const express = require('express');
+const typeDefs = require("./schema")
 const { ApolloServer, gql } = require('apollo-server-express');
+const resolvers = require("./resolvers")
+let world = require("./world")
 
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql `
-    type Query {
-        hello: String
-    }
-`;
 
-// Provide resolver functions for your schema fields
-const resolvers = {
-    Query: {
-        hello: () => 'Hello world!',
-    },
-};
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: async({ req }) => ({
+        world: world
+    })
+})
 
 const app = express();
+app.use(express.static('public'));
 server.start().then(res => {
     server.applyMiddleware({ app });
 
