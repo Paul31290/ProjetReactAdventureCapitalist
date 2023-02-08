@@ -1,5 +1,5 @@
 module.exports = {
-    "name": "Nom du monde",
+    "name": "Pokemon",
     "logo": "icones/logomonde.png",
     "money": 0,
     "score": 0,

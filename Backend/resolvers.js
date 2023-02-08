@@ -1,3 +1,7 @@
+var fs = require('fs');
+const world = require('./world');
+const { products } = require('./world');
+
 function saveWorld(context) {
     fs.writeFile("userworlds/" + context.user + "-world.json",
         JSON.stringify(context.world), err => {
@@ -17,5 +21,14 @@ module.exports = {
             return context.world
         }
     },
-    Mutation: {}
+    Mutation: {
+        acheterQtProduit(args) {
+            if (args.id != world.products.includes(id)) {
+                throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
+            } else {
+                world.products.quantite += args.quantite;
+                world.money
+            }
+        }
+    }
 };
