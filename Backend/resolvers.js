@@ -23,12 +23,33 @@ module.exports = {
     },
     Mutation: {
         acheterQtProduit(args) {
+            for (var n in products) {
+                if (n.id != world.products.includes(id)) {
+                    throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
+                } else {
+                    args.quantite += args.quantite
+                    world.money -= args.cout
+                    args.cout = args.cout * args.croissance
+                    saveWorld(context)
+                }
+            }
+            return args
+        },
+
+        lancerProductionProduit(args) {
             if (args.id != world.products.includes(id)) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                world.products.quantite += args.quantite;
-                world.money
+                args.vitesse = args.timeleft
             }
+            return args
+        },
+
+        engagerManager(args) {
+            if (args.name != world.managers.includes(name)) {
+                throw new Error(`Le manager avec l'id ${args.name} n'existe pas`)
+            }
+
         }
     }
 };

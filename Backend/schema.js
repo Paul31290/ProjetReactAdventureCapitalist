@@ -7,7 +7,7 @@ enum RatioType {
     ANGE
 }
  
-type Palier {
+type Pallier {
     name: String!
     logo: String
     seuil: Float
@@ -28,7 +28,7 @@ type Product {
     quantite: Int
     timeleft: Int
     managerUnlocked: Boolean
-    paliers: [Palier]
+    paliers: [Pallier]
 }
 
 type World {
@@ -41,10 +41,10 @@ type World {
     angelbonus: Int
     lastupdate: String
     products: [Product]
-    allunlocks: [Palier]
-    upgrades: [Palier]
-    angelupgrades: [Palier]
-    managers: [Palier]
+    allunlocks: [Pallier]
+    upgrades: [Pallier]
+    angelupgrades: [Pallier]
+    managers: [Pallier]
 }
 
 type Query {
@@ -54,9 +54,9 @@ type Query {
 type Mutation {
     acheterQtProduit(id: Int!, quantite: Int!): Product
     lancerProductionProduit(id: Int!): Product
-    engagerManager(name: String!): Palier
-    acheterCashUpgrade(name: String!): Palier 
-    acheterAngelUpgrade(name: String!): Palier
+    engagerManager(name: String!): Pallier
+    acheterCashUpgrade(name: String!): Pallier 
+    acheterAngelUpgrade(name: String!): Pallier
     resetWorld: World
 }
 

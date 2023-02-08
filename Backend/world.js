@@ -24,8 +24,8 @@ module.exports = {
                     "seuil": 20,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
                 {
                     "name": "Pierre Plante",
@@ -33,8 +33,8 @@ module.exports = {
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
                 {
                     "name": "Grain Miracle",
@@ -42,8 +42,8 @@ module.exports = {
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
             ]
         },
@@ -64,8 +64,8 @@ module.exports = {
                     "seuil": 20,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
                 {
                     "name": "Pierre Eau",
@@ -73,8 +73,8 @@ module.exports = {
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
                 {
                     "name": "Eau Mystique",
@@ -82,8 +82,8 @@ module.exports = {
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "typeratio": "VITESSE",
+                    "unlocked": false
                 },
             ]
         },
@@ -94,8 +94,8 @@ module.exports = {
         "seuil": 30,
         "idcible": 0,
         "ratio": 2,
-        "typeratio": "gain",
-        "unlocked": "false"
+        "typeratio": "GAIN",
+        "unlocked": false
     }, ],
     "upgrades": [{
             "name": "Pierre Feu",
@@ -103,8 +103,8 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "gain",
-            "unlocked": "false"
+            "typeratio": "GAIN",
+            "unlocked": false
         },
         {
             "name": "Pierre Eau",
@@ -112,8 +112,8 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "gain",
-            "unlocked": "false"
+            "typeratio": "GAIN",
+            "unlocked": false
         },
     ],
     "angelupgrades": [{
@@ -122,8 +122,8 @@ module.exports = {
         "seuil": 10,
         "idcible": 0,
         "ratio": 3,
-        "typeratio": "gain",
-        "unlocked": "false"
+        "typeratio": "GAIN",
+        "unlocked": false
     }, ],
     "managers": [{
             "name": "Keteleeria",
@@ -131,8 +131,8 @@ module.exports = {
             "seuil": 10,
             "idcible": 1,
             "ratio": 0,
-            "typeratio": "gain",
-            "unlocked": "false"
+            "typeratio": "GAIN",
+            "unlocked": false
         },
         {
             "name": "Sacha",
@@ -140,8 +140,8 @@ module.exports = {
             "seuil": 10,
             "idcible": 1,
             "ratio": 0,
-            "typeratio": "gain",
-            "unlocked": "false"
+            "typeratio": "GAIN",
+            "unlocked": false
         }
     ]
 };
