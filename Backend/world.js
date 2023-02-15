@@ -1,7 +1,7 @@
 module.exports = {
     "name": "Pokemon",
     "logo": "icones/logomonde.png",
-    "money": 0,
+    "money": 65,
     "score": 0,
     "totalangels": 0,
     "activeangels": 0,
@@ -92,7 +92,7 @@ module.exports = {
         "name": "Fouet Liane",
         "logo": "icones/fouetliane.png",
         "seuil": 30,
-        "idcible": 0,
+        "idcible": 1,
         "ratio": 2,
         "typeratio": "GAIN",
         "unlocked": false
@@ -138,7 +138,7 @@ module.exports = {
             "name": "Sacha",
             "logo": "icones/sacha.png",
             "seuil": 10,
-            "idcible": 1,
+            "idcible": 2,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false

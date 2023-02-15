@@ -11,7 +11,15 @@ function saveWorld(context) {
                     `Erreur d'écriture du monde coté serveur`)
             }
         })
-}
+};
+
+function calcScore(context) {
+    for (var p in context.world.products) {
+        if (p.timeleft != 0) {
+            if (p.timeleft) {}
+        }
+    }
+};
 
 
 module.exports = {
@@ -22,37 +30,39 @@ module.exports = {
         }
     },
     Mutation: {
-        acheterQtProduit(parent, context, args) {
-            let produit = context.world.products.find(p => p.id = args.id)
+        acheterQtProduit(parent, args, context) {
+            let produit = context.world.products.find(p => p.id == args.id)
             if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                args.quantite += args.quantite
-                context.world.money -= args.cout
-                args.cout = args.cout * args.croissance
-                saveWorld(context)
+                produit.quantite += args.quantite
+                context.world.money -= produit.cout
+                produit.cout = produit.cout * produit.croissance
+                produit.lastupdate = Date.now()
             }
             return produit
         },
 
-        lancerProductionProduit(parent, context, args) {
-            let produit = context.world.products.find(p => p.id = args.id)
+        lancerProductionProduit(parent, args, context) {
+            let produit = context.world.products.find(p => p.id == args.id)
             if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
                 produit.vitesse = produit.timeleft
+                produit.lastupdate = Date.now()
             }
             return produit
         },
 
-        engagerManager(parent, context, args) {
-            let manager = context.world.manager.find(m => m.name = args.name)
+        engagerManager(parent, args, context) {
+            let manager = context.world.managers.find(m => m.name == args.name)
             if (manager == undefined) {
                 throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
             } else {
-                let produit = context.world.products.find(p => p.id = args.id)
-                produit.managerUnlocked != produit.managerUnlocked;
-                manager.unlocked != manager.unlocked
+                let produitManager = context.world.products.find(p => p.id == manager.idcible)
+                manager.unlocked = !manager.unlocked
+                produitManager.managerUnlocked = !produitManager.managerUnlocked
+                produitManager.lastupdate = Date.now()
             }
             return manager
         }
