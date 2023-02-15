@@ -22,34 +22,39 @@ module.exports = {
         }
     },
     Mutation: {
-        acheterQtProduit(args) {
-            for (var n in products) {
-                if (n.id != world.products.includes(id)) {
-                    throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
-                } else {
-                    args.quantite += args.quantite
-                    world.money -= args.cout
-                    args.cout = args.cout * args.croissance
-                    saveWorld(context)
-                }
-            }
-            return args
-        },
-
-        lancerProductionProduit(args) {
-            if (args.id != world.products.includes(id)) {
+        acheterQtProduit(parent, context, args) {
+            let produit = context.world.products.find(p => p.id = args.id)
+            if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                args.vitesse = args.timeleft
+                args.quantite += args.quantite
+                context.world.money -= args.cout
+                args.cout = args.cout * args.croissance
+                saveWorld(context)
             }
-            return args
+            return produit
         },
 
-        engagerManager(args) {
-            if (args.name != world.managers.includes(name)) {
-                throw new Error(`Le manager avec l'id ${args.name} n'existe pas`)
+        lancerProductionProduit(parent, context, args) {
+            let produit = context.world.products.find(p => p.id = args.id)
+            if (produit == undefined) {
+                throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
+            } else {
+                produit.vitesse = produit.timeleft
             }
+            return produit
+        },
 
+        engagerManager(parent, context, args) {
+            let manager = context.world.manager.find(m => m.name = args.name)
+            if (manager == undefined) {
+                throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
+            } else {
+                let produit = context.world.products.find(p => p.id = args.id)
+                produit.managerUnlocked != produit.managerUnlocked;
+                manager.unlocked != manager.unlocked
+            }
+            return manager
         }
     }
 };
