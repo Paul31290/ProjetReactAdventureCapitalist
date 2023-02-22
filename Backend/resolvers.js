@@ -44,7 +44,11 @@ function calcScore(context) {
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
+<<<<<<< HEAD
             calcScore(context)
+=======
+            //calcScore()
+>>>>>>> 39313242fa2db643cbf74efbe5624974f2222403
             saveWorld(context)
             return context.world
         }
