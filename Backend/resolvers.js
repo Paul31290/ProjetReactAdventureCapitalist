@@ -16,7 +16,11 @@ function saveWorld(context) {
 function calcScore(context) {
     for (var p in context.world.products) {
         if (p.timeleft != 0) {
-            if (p.timeleft) {}
+            if (context.world.lastupdate - p.timeleft < 0) {
+                context.world.score += p.cout
+            } else {
+
+            }
         }
     }
 };
@@ -25,6 +29,7 @@ function calcScore(context) {
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
+            calcScore()
             saveWorld(context)
             return context.world
         }
@@ -35,10 +40,14 @@ module.exports = {
             if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                produit.quantite += args.quantite
-                context.world.money -= produit.cout
-                produit.cout = produit.cout * produit.croissance
-                produit.lastupdate = Date.now()
+                tempsEcoule = context.world.lastupdate - Date.now()
+                if (tempsEcoule >= produit.timeleft) {
+                    calcScore()
+                    produit.quantite += args.quantite
+                    context.world.money -= produit.cout
+                    produit.cout = produit.cout * produit.croissance
+                    context.world.lastupdate = Date.now()
+                }
             }
             return produit
         },
@@ -49,7 +58,7 @@ module.exports = {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
                 produit.vitesse = produit.timeleft
-                produit.lastupdate = Date.now()
+                context.world.lastupdate = Date.now()
             }
             return produit
         },
@@ -62,7 +71,6 @@ module.exports = {
                 let produitManager = context.world.products.find(p => p.id == manager.idcible)
                 manager.unlocked = !manager.unlocked
                 produitManager.managerUnlocked = !produitManager.managerUnlocked
-                produitManager.lastupdate = Date.now()
             }
             return manager
         }
