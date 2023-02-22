@@ -44,11 +44,7 @@ function calcScore(context) {
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
-<<<<<<< HEAD
-            calcScore(context)
-=======
-            //calcScore()
->>>>>>> 39313242fa2db643cbf74efbe5624974f2222403
+            //calcScore(context)
             saveWorld(context)
             return context.world
         }
@@ -59,7 +55,7 @@ module.exports = {
             if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                calcScore(context)
+                //calcScore(context)
                 produit.quantite += args.quantite
                 context.world.money -= produit.cout
                 produit.cout = produit.cout * produit.croissance
@@ -73,7 +69,7 @@ module.exports = {
             if (produit == undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
             } else {
-                calcScore(context)
+                //calcScore(context)
                 produit.vitesse = produit.timeleft
                 context.world.lastupdate = Date.now().toString
             }
@@ -85,7 +81,7 @@ module.exports = {
             if (manager == undefined) {
                 throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
             } else {
-                calcScore(context)
+                //calcScore(context)
                 let produitManager = context.world.products.find(p => p.id == manager.idcible)
                 manager.unlocked = !manager.unlocked
                 produitManager.managerUnlocked = !produitManager.managerUnlocked
