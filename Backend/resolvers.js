@@ -29,7 +29,7 @@ function calcScore(context) {
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
-            calcScore()
+            //calcScore()
             saveWorld(context)
             return context.world
         }
