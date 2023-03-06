@@ -7,10 +7,9 @@ import { useInterval } from './MyInterval';
 
 type ProductProps = {
     product: Product
-    onProductionDone: (product: Product) => void,
-    //services: Services
+    onProductionDone: (product: Product, qt: number) => void
    }
-   export default function ProductComponent({ product, onProductionDone, /*services*/
+   export default function ProductComponent({ product, onProductionDone
    } : ProductProps) {
        
 
@@ -37,7 +36,7 @@ type ProductProps = {
             let tpsecoule = Date.now() - lastupdate.current
             lastupdate.current=Date.now()
             if (tpsecoule>=timeleft) {
-                onProductionDone(product)
+                onProductionDone(product, 1)
                 setTimeleft(0)       
             }
             else {

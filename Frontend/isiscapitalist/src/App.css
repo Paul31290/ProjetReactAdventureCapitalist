@@ -9,4 +9,7 @@
 .product {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 50%;
+  height: 30%;
 }
+
