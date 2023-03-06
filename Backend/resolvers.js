@@ -15,7 +15,7 @@ function saveWorld(context) {
 
 function calcScore(context) {
     for (var p in context.world.products) {
-        tempsEcoule = Date.now().toString - parseInt(context.world.lastupdate)
+        tempsEcoule = Date.now().toString - Number.context.world.lastupdate
         tempsEcouleInt = tempsEcoule -= p.timeleft
         if (tempsEcoule < 0) {
             p.timeleft = -tempsEcoule

@@ -3,7 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import { World } from './world';
 import Product from './Product';
+import Manager from './Manager';
 import { transform } from './utils';
+import { click } from '@testing-library/user-event/dist/click';
 
 type MainProps = {
   loadworld: World
@@ -15,21 +17,26 @@ type MainProps = {
       setWorld(JSON.parse(JSON.stringify(loadworld)) as World)
      }, [loadworld])
     return (
-        <div className="header">
-          <div><img className='image' src={"http://localhost:4000/" + world.logo} /> <span> {world.name} </span></div>
-          <div><img className='image' src={"http://localhost:4000/icones/Bandeau.png"} /></div>
-          <div><span dangerouslySetInnerHTML={{__html: transform(world.money)}}/></div>
-          <div><img className='image' src={"http://localhost:4000/icones/Multiplicateur.png"} /></div>
-          <div>multiplicateur</div>
+        <><div className="header">
+        <div><img className='image' src={"http://localhost:4000/" + world.logo} /> <span> {world.name} </span></div>
+        <div><img className='image' src={"http://localhost:4000/icones/Bandeau.png"} /></div>
+        <div><span dangerouslySetInnerHTML={{ __html: transform(world.money) }} /></div>
+        <div><img className='image' src={"http://localhost:4000/icones/Multiplicateur.png"} /></div>
+        <div>multiplicateur</div>
         <div className="main" />
-          <div>liste des boutons de menu</div>
-        <div className="product"/>
-          <Product product={ world.products[0] } />
-          <Product product={ world.products[1] } />
-          <div>troisième produit</div>
-          <div>quatrième produit</div>
-          <div>cinquième produit</div>
-          <div>sixième produit</div>
-        </div>
+        <div>liste des boutons de menu</div>
+        <div className="product" />
+        <Product product={world.products[0]} />
+        <Product product={world.products[1]} />
+        <div>troisième produit</div>
+        <div>quatrième produit</div>
+        <div>cinquième produit</div>
+        <div>sixième produit</div>
+      </div>
+      <button class="manager" onClick ={"showManagers = !showManagers"}>
+        Managers
+      </button>
+      <Manager showManagers = "false"></Manager> 
+      <Manager showManagers = "true"></Manager>  
     );
 }
