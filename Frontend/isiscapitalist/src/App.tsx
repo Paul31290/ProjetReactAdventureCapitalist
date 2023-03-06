@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { gql, useApolloClient, useQuery } from '@apollo/client';
 import Main from './Main';
+import { Product } from './world';
 
 function App() {
   const [username, setUsername] = useState("")
@@ -103,6 +104,12 @@ function App() {
   if (loading) corps = <div> Loading... </div>
   else if (error) corps = <div> Erreur de chargement du monde ! </div>
   else corps = <Main loadworld={data.getWorld} username={username} />
+
+  /*function onProductionDone(p: Product): void {
+    let gain = Product.cout * Product.quantite
+    addToScore(gain)
+  }*/
+   
 
   return (
     <div>
