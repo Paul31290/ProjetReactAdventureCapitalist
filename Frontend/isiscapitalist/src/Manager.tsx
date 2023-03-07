@@ -5,18 +5,13 @@ import './Manager.css';
 import {Product, World, Palier} from './world';
 
 type ManagerProps = {
-    product: Palier
+    manager: Palier
+    showManagers: Boolean
    }
-   export default function ManagerComponent({ manager} : ManagerProps) {
-    const lastupdate = Date.now()
-    
+   export default function ManagerComponent(this: any, {manager} : ManagerProps) { 
 
-    function startFabrication() {
-    }
-    return(
-
-<div> { showManagers && 
-<div class="modal">
+if (manager.showManagers){
+    return(<div class="modal">
     <div>
         <h1 class="title">Managers make you feel better !</h1>
     </div>
@@ -42,12 +37,13 @@ Hire !</Button>
  </div>
  </div>
 )
- <button class="closebutton" (click)="showManagers =!showManagers"> Close</button>
+ <button class="closebutton" onClick={"manager.showManagers = !manager.showManagers"}> Close</button>
 
         </div>
     </div>
-} </div>
 )
+        } else return (null)
 }
+
 
 

@@ -32,11 +32,8 @@ type MainProps = {
         <div>quatrième produit</div>
         <div>cinquième produit</div>
         <div>sixième produit</div>
-      </div>
-      <button class="manager" onClick ={"showManagers = !showManagers"}>
-        Managers
-      </button>
-      <Manager showManagers = "false"></Manager> 
-      <Manager showManagers = "true"></Manager>  
+      </div><button className="manager" onClick={Manager.showManagers = !Manager.showManagers}>
+          Managers
+        </button><Manager showManagers={false} manager={world.managers[0]}></Manager><Manager showManagers={true} manager={world.managers[0]}></Manager></>  
     );
 }

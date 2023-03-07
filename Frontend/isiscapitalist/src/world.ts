@@ -50,4 +50,5 @@ export class Palier {
     ratio: number = 0
     typeratio: string = ""
     unlocked: boolean = false
+    showManagers: any
 }
