@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { World } from './world';
+import { Palier, World } from './world';
 import Product from './Product';
 import Manager from './Manager';
 import { transform } from './utils';
@@ -44,10 +44,9 @@ type MainProps = {
         <div>cinquième produit</div>
         <div>sixième produit</div>
       </div>
-      <button class="manager" onClick ={"showManagers = !showManagers"}>
+      {/* <button className="manager" /> (click) ={"showManagers = !showManagers"}
         Managers
-      </button>
-      <Manager showManagers = "false"></Manager> 
-      <Manager showManagers = "true"></Manager>  
-    );
+    </><Manager showManagers={false} manager={new Palier} ></Manager><Manager showManagers={true} manager={new Palier}></Manager>
+    );*/}</>  
+    )
 }

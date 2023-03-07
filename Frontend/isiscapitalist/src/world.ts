@@ -13,6 +13,7 @@ export class World {
     upgrades: Palier[]
     angelupgrades: Palier[]
     managers: Palier[]
+    static manager: any
 
     constructor() {
         this.products = [ ]
