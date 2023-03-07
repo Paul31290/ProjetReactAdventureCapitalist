@@ -18,8 +18,8 @@ type MainProps = {
       setWorld(JSON.parse(JSON.stringify(loadworld)) as World)
      }, [loadworld])
 
-    function onProductionDone(p: Product, qt:number): void {
-      let gain = p.revenu * p.quantite * qt
+    function onProductionDone(p: { revenu: number; quantite: number; }): void {
+      let gain = p.revenu * p.quantite
       addToScore(gain)
     }
   
@@ -46,7 +46,7 @@ type MainProps = {
       </div>
       {/* <button className="manager" /> (click) ={"showManagers = !showManagers"}
         Managers
-    </><Manager showManagers={false} manager={new Palier} ></Manager><Manager showManagers={true} manager={new Palier}></Manager>
+    </><Manager manager={new Palier} ></Manager><Manager manager={new Palier}></Manager>
     );*/}</>  
     )
 }

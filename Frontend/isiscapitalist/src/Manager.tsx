@@ -5,19 +5,20 @@ import './Manager.css';
 import { click } from '@testing-library/user-event/dist/click';
 import {Product, World, Palier} from './world';
 
+
 type ManagerProps = {
     manager: Palier
     showManagers: Boolean
    }
-   export default function ManagerComponent(this: any, {manager} : ManagerProps) { 
-
-if (manager.showManagers){
+   export default function ManagerComponent(this: any, {}, showManagers : ManagerProps) {
+    
+if (showManagers){
     return(<div className="modal">
     <div>
         <h1 className="title">Managers make you feel better !</h1>
     </div>
  <div> {
-    World.manager.pallier.filter( (manager: { unlocked: any; }) => !manager.unlocked).map((manager: { idcible: React.Key | null | undefined; logo: any; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; seuil: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; }) =>
+    World.manager.pallier.filter( (manager: { unlocked: any; }) => !manager.unlocked).map((manager: { idcible: number; logo:string; name: string; seuil: number}) =>
     <div key={manager.idcible} className="managergrid">
         <div>
             <div className="logo">
