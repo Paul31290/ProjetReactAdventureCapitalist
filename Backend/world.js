@@ -11,7 +11,7 @@ module.exports = {
             "id": 1,
             "name": "Vipelierre",
             "logo": "icones/vipelierre.png",
-            "cout": 4,
+            "cout": 1,
             "croissance": 1.07,
             "revenu": 1,
             "vitesse": 500,

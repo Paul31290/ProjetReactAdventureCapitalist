@@ -46,6 +46,3 @@ Hire !</button>
     )
          } else return (null)
 }
-
-
-
