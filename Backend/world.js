@@ -30,7 +30,7 @@ module.exports = {
                 {
                     "name": "Pierre Plante",
                     "logo": "icones/pierreplante.png",
-                    "seuil": 75,
+                    "seuil": 50,
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "VITESSE",
@@ -70,7 +70,7 @@ module.exports = {
                 {
                     "name": "Pierre Eau",
                     "logo": "icones/pierreeau.png",
-                    "seuil": 75,
+                    "seuil": 50,
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "VITESSE",
