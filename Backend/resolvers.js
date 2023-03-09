@@ -103,18 +103,18 @@ module.exports = {
 
         acheterCashUpgrade(parent, args, context) {
             calcScore(context)
-            context.world.products.forEach(function(p) {
-                if (p.quantite >= context.world.upgrade[0].seuil) {
-                    context.world.upgrade[0].unlocked = !context.world.upgrade[0].unlocked
-                }
-                if (p.quantite >= context.world.upgrade[1].seuil) {
-                    context.world.upgrade[1].unlocked = !context.world.upgrade[1].unlocked
-                }
-            });
+            let upgrade = context.world.upgrades.find(u => u.name == args.name)
+            if (upgrade == undefined) {
+                throw new Error(`L'upgrade avec le nom ${args.name} n'existe pas`)
+            } else {
+                upgrade.unlocked = !upgrade.unlocked
+                context.world.lastupdate = Date.now()
+            }
+            return upgrade
         },
 
         resetWorld(context) {
-
+            calcScore(context)
         }
     }
 }
