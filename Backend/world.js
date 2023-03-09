@@ -18,7 +18,7 @@ module.exports = {
             "quantite": 1,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [{
+            "paliers": [{
                     "name": "Poké Ball",
                     "logo": "icones/pokeball.png",
                     "seuil": 20,
@@ -58,7 +58,7 @@ module.exports = {
             "quantite": 1,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [{
+            "paliers": [{
                     "name": "Super Ball",
                     "logo": "icones/superball.png",
                     "seuil": 20,
