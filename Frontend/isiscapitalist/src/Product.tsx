@@ -49,7 +49,7 @@ type ProductProps = {
     }
 
    return (
-    <div>
+    <div style={{backgroundColor:'azure', borderWidth:10, borderBlockColor:'black'}}>
         <img className='image' src={"http://localhost:4000/" + product.logo} />
         <span> {product.name} </span>
         <button onClick={startFabrication}/>

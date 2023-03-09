@@ -8,8 +8,6 @@
 }
 .product {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 50%;
-  height: 30%;
+  grid-template-columns: 30% 30%;
 }
 
