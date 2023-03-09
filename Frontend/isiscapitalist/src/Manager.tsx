@@ -13,12 +13,13 @@ type ManagerProps = {
    export default function ManagerComponent(this: any, {}, showManagers : ManagerProps) {
     
 if (showManagers){
-    return(<div className="modal">
+    return(
+    <div className="modal">
     <div>
         <h1 className="title">Managers make you feel better !</h1>
     </div>
- <div> {
-    World.manager.pallier.filter( (manager: { unlocked: any; }) => !manager.unlocked).map((manager: { idcible: number; logo:string; name: string; seuil: number}) =>
+    <div> {
+    this.props.world.manager.pallier.filter( (manager: { unlocked: any; }) => !manager.unlocked).map((manager: { idcible: number; logo:string; name: string; seuil: number}) =>
     <div key={manager.idcible} className="managergrid">
         <div>
             <div className="logo">
@@ -33,16 +34,15 @@ if (showManagers){
     <div className="managercost"> {manager.seuil} </div>
     </div>
     <div onClick={() => this.hireManager(manager)}>
-        <button disabled={this.props.world.money < manager.seuil}> 
-Hire !</button>
- </div>
- </div>
-)
-}
- <button className="closebutton"/> (click) = {"manager.showManagers = !manager.showManagers"} Close
+        <button disabled={this.props.world.money < manager.seuil}> Hire !</button>
+    </div>
+    </div>
+    )
+    }
+    <button className="closebutton"/> (click) = {"manager.showManagers = !manager.showManagers"} Close
 
         </div>
         </div>
     )
-         } else return (null)
+    } else return (null)
 }

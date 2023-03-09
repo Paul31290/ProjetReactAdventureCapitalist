@@ -9,6 +9,7 @@ import ProductComponent from './Product';
 function App() {
   const [username, setUsername] = useState("")
   const client = useApolloClient();
+  //On génère un identifiant aléatoire à l'ouverture de la session
   useEffect(() => {
     let first_username = localStorage.getItem("username")
     if (!first_username) {
@@ -19,6 +20,7 @@ function App() {
     setUsername(first_username)
   },[])
 
+  //Le nom est remis à jour sur le serveur à chaque fois que l'utilisateur tape un caractère.
   function onUserNameChanged(event : ChangeEvent<HTMLInputElement>){
     let new_userN = event.target.value
     setUsername(new_userN)
@@ -26,6 +28,7 @@ function App() {
     client.resetStore();
   }
 
+  //On charge le monde stocké dans le serveur.
   const GET_WORLD = gql`
     query getWorld {
       getWorld {

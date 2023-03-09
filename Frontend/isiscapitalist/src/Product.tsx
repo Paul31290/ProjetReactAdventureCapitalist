@@ -18,17 +18,16 @@ type ProductProps = {
     const [timeleft, setTimeleft] = useState(product.timeleft)
 
     
-    let run = true;
+    let run = false; //Le produit n'est pas en fabrication
     function startFabrication() {
-        setTimeleft(product.vitesse)
+        setTimeleft(product.vitesse) //On initialise le temps restant
         lastupdate.current=Date.now()
-        //while (timeleft > 0)
-            
-        /*run est un booléen qui quand il est vrai anime la production de la barre, et quand il est faux la
-        remet à zéro. Il faut donc le mettre en vrai quand le produit est en production, autrement dit quand
-        sa propriété timeleft est strictement positive (ou, comme nous le verrons plus tard, quand le
-        manager du produit est débloqué).*/ 
-
+        while (timeleft !=0){
+            run = true //Le produit est en fabrication
+        }
+        if (product.managerUnlocked = false) {
+            run = false //Le produit a été fabriqué, il faut recliquer.
+        }
     }
 
     function calcScore() {

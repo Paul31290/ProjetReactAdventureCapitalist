@@ -45,9 +45,6 @@ type MainProps = {
         <div>cinquième produit</div>
         <div>sixième produit</div>
       </div>
-        {/* <button className="manager" /> (click) ={"showManagers = !showManagers"}
-        Managers
-    </><Manager manager={new Palier} ></Manager><Manager manager={new Palier}></Manager>
-    );*/}</>  
+        </>  
   )
 }
