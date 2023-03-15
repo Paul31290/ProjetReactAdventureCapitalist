@@ -16,8 +16,9 @@ function saveWorld(context) {
 
 function calcScore(context) {
     context.world.products.forEach(function(p) {
-        var tempsEcoule = Date.now() - context.world.lastupdate + tempsEcoule
-        var nombreExecution = 0
+        let tempsEcoule = Date.now() - context.world.lastupdate + tempsEcoule
+        let nombreExecution = 0
+        let revenuDuProduit = p.revenu
         if (p.managerUnlocked) {
             var production = tempsEcoule % p.vitesse
             nombreExecution = (tempsEcoule - production) / p.vitesse
@@ -30,7 +31,10 @@ function calcScore(context) {
                 nombreExecution = 1
             }
         }
-        context.world.money += nombreExecution * p.revenu
+        if (context.world.angelupgrade.unlocked) {
+            revenuDuProduit = p.quantite * revenuDuProduit * (1 + context.world.activeangels * context.world.angelbonus / 100)
+        }
+        context.world.money += nombreExecution * revenuDuProduit
         context.world.score += context.world.money
     });
 }
@@ -72,6 +76,7 @@ module.exports = {
                 context.world.lastupdate = Date.now()
             }
             debloquer(context)
+            saveWorld(context)
             return produit
         },
 
@@ -84,6 +89,7 @@ module.exports = {
                 produit.timeleft = produit.vitesse
                 context.world.lastupdate = Date.now()
             }
+            saveWorld(context)
             return produit
         },
 
@@ -98,6 +104,7 @@ module.exports = {
                 produitManager.managerUnlocked = !produitManager.managerUnlocked
                 context.world.lastupdate = Date.now()
             }
+            saveWorld(context)
             return manager
         },
 
@@ -110,11 +117,28 @@ module.exports = {
                 upgrade.unlocked = !upgrade.unlocked
                 context.world.lastupdate = Date.now()
             }
+            saveWorld(context)
             return upgrade
         },
 
-        resetWorld(context) {
+        resetWorld(parent, args, context) {
             calcScore(context)
+            let angelAdd = 150 * Math.sqrt(context.world.score / Math.pow(10, 15)) - context.world.totalangels
+            context.world.activeangels = angelAdd
+            context.world.totalangels += angelAdd
+            let angesEnActivite = context.world.activeangels
+            let angesAuTotal = context.world.totalangels
+            let scoreTotal = context.world.score
+            context.world = world
+            context.world.activeangels = angesEnActivite
+            context.world.totalangels = angesAuTotal
+            context.world = scoreTotal
+            saveWorld(context)
+            return context.world
+        },
+
+        acheterAngelUpgrade(parent, args, context) {
+
         }
     }
 }
