@@ -1,5 +1,5 @@
 var fs = require('fs');
-const world = require('./world');
+let world = require('./world');
 const { products } = require('./world');
 
 function saveWorld(context) {

@@ -1,10 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { gql, useApolloClient, useQuery } from '@apollo/client';
 import Main from './Main';
-import { Product, World } from './world';
-import ProductComponent from './Product';
 
 function App() {
   const [username, setUsername] = useState("")
