@@ -18,7 +18,11 @@
     /* a 20% de la gauche */
 }
 
+.title {
+    text-align: center;
+}
+
 .managergrid {
     display: grid;
-    grid-template-columns: 30% 30% 30% 20%;
+    grid-template-columns: 40% 40%;
 }

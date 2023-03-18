@@ -15,17 +15,19 @@ type ManagerProps = {
 
     const [showMangager, setShowManager] = useState(showManager)
 
+    // On utilise le hook d'effet qui nous permet de récupérer le showManager pour afficher la page
     useEffect(() => {
         setShowManager(showManager);
     }, [showManager]);
 
-
+    // On utilise la fonction pour pouvoir engager un manager
     function hireManager(manager: Palier){
         if(manager.seuil < world.money){
             hiringManager(manager)
         }
     }
 
+    // On utilse cette fonction pour pouvoir fermer la fenetre grâce à showManager
     function fermerLaFenetre(){
         setShowManager(!showManager)
         seeManagers()
@@ -45,17 +47,17 @@ type ManagerProps = {
                         </div>
                     </div>
                     <div className="infosmanager">
-                        <div className="managername"> { manager.name} </div>
-                        <div className="managercible"> {world.products[manager.idcible-1].name}</div>
-                        <div className="managercost"> {manager.seuil} </div>
+                        <div className="managername"> Nom: { manager.name} </div>
+                        <div className="managercible"> Agit sur: {world.products[manager.idcible-1].name}</div>
+                        <div className="managercost"> Argent demandé: {manager.seuil} </div>
                     </div>
                 <div>
-                    <button disabled={world.money < manager.seuil} onClick={() => hireManager(manager)}>Engager</button>
+                    <button disabled={world.money < manager.seuil} onClick={() => hireManager(manager)}> Engager ?</button>
                 </div>
             </div>
         )
     }
-    <button className="closebutton" onClick={fermerLaFenetre}>Close</button>
+    <button className="closebutton" onClick={fermerLaFenetre}> Fermer </button>
     </div>
     </div>
     )

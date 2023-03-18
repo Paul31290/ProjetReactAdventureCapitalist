@@ -14,7 +14,7 @@ type ProductProps = {
     username: string
     money: number
    }
-   export default function ProduitComponent({ product, onProductionDone, onProductBuy, username, money
+   export default function ProduitComponent({product, onProductionDone, onProductBuy, username, money
    } : ProductProps) {
        
     // On initialise nos hooks, lancer pour le manager automatique avec la progressBar
@@ -35,7 +35,7 @@ type ProductProps = {
       }
     `
     //On met les conditions nécessaires et une exception pour appeler la mutation  
-    const [pion] = useMutation(lancerProductionProduit,{
+    const [production] = useMutation(lancerProductionProduit,{
         context: {
             headers:{
                 "x-user": username
@@ -48,38 +48,24 @@ type ProductProps = {
     )
     // Fonction qui lance la pion d'un produit avec la progress bar.
     function produireProduit(){
-        if(product.timeleft == 0 && product.quantite > 0){
-            product.timeleft = product.vitesse
+        if(product.timeleft == 0 && product.quantite >= 0){
             setLancer(true)
+            product.timeleft = product.vitesse
             setLastUpdate(Date.now())
         }
     }
         
-    /* On fait une fonction d'achat de produit. Si la quantité maximale d'un produit 
-    est supérieur à un seuil, alors on n'achète pas la produit*/
+    /* On fait une fonction d'achat de produit. Si le cout du produit
+    est supérieur à notre argent disponible, alors on n'achète pas le produit*/
     function produitDisponible(): boolean{
-        let quantiteMaximum = maximumQtProduit()
-        if(product.cout > quantiteMaximum){
+        if(product.cout > money){
             return true
         } else {
             return false
         }
     }
-    /*On fait une fonction pour calculer la quantité de produit maximum que l'on peut
-     acheter en fonction de l'argent de notre monde*/
-    function maximumQtProduit(): number{
-        let prix = product.cout
-        let nouveauPrix = product.cout
-        let maxQtProduit = 0
-        
-        while(money > nouveauPrix){
-            prix *= product.croissance
-            nouveauPrix += prix
-            maxQtProduit++
-        }
-        return maxQtProduit
-    }
 
+    // On achète 1 produit
     function acheterProduit(){
         onProductBuy(1, product)
     }
@@ -100,7 +86,7 @@ type ProductProps = {
                 setLancer(true)
                 product.timeleft = product.vitesse
             } else {
-                pion({variables : {id: product.id}});
+                production({variables : {id: product.id}})
                 product.timeleft = 0
                 setLancer(false)
             }
@@ -111,16 +97,17 @@ type ProductProps = {
    return (
     <div style={{backgroundColor:'azure', borderWidth:10, borderBlockColor:'black'}}>
         <img className='imageProduit' src={"http://localhost:4000/" + product.logo} onClick = {produireProduit}/>
-        <div> {product.name} </div>
-        <div> {product.quantite}</div>{
+        <div> Quantité actuelle: {product.quantite} </div>
+        <div> Coût du produit: {product.cout} </div>
+        <div> Produit: {product.name}</div>{
             product.quantite > 0 &&
         <MyProgressbar className="barstyle" vitesse={product.vitesse}
         initialvalue={product.vitesse - product.timeleft}
-        run={lancer} frontcolor="#ff8800" backcolor="#ffffff"
+        run={lancer} frontcolor="#63c5da" backcolor="#ffffff"
         auto={product.managerUnlocked}
         orientation={Orientation.horizontal} />
         }
-        <button disabled={produitDisponible()} onClick={acheterProduit} id={"acheterLeProduit" + product.id.toString()}> Acheter </button>
+        <button disabled={produitDisponible()} onClick={acheterProduit}> Acheter </button>
     </div>
    )
 }

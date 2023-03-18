@@ -1,4 +1,4 @@
 .header {
     display: grid;
-    grid-template-columns: 25% 25% 30% 20%;
+    grid-template-columns: 30% 30% 30%;
 }

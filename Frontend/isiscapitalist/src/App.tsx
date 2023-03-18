@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import './App.css';
 import { gql, useApolloClient, useQuery } from '@apollo/client';
 import Main from './Main';
 

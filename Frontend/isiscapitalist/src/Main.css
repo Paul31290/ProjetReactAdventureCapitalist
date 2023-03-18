@@ -1,15 +1,22 @@
 .header {
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 20% 30%;
     column-gap: 5px;
 }
 
-.main {
-    display: grid;
-    grid-template-columns: 20% 80%;
+.imageMulti {
+    height: 200px;
+    width: 200px;
 }
 
-.product {
-    display: grid;
-    grid-template-columns: 30% 30%;
+.logos {
+    position: relative;
+}
+
+.imageLogo {
+    position: absolute;
+    left: 62px;
+    top: 25px;
+    height: 80px;
+    width: 420px;
 }
