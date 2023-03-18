@@ -10,31 +10,32 @@ import { gql, useMutation } from '@apollo/client';
 type ProductProps = {
     product: Product
     onProductionDone: (product: Product) => void
+    onProductBuy: (qt: number, p: Product) => void
     username: string
     money: number
    }
-   export default function ProductComponent({ product, onProductionDone, username, money
+   export default function ProduitComponent({ product, onProductionDone, onProductBuy, username, money
    } : ProductProps) {
        
     // On initialise nos hooks, lancer pour le manager automatique avec la progressBar
     const [lancer, setLancer] = useState(false)
 
     /* On initialise nos hooks, lastupdate pour la mise à jour du temps, 
-    timeleft pour le temps restant au produit pour sa production*/
+    timeleft pour le temps restant au produit pour sa pion*/
     useInterval(() => calcScore(), 100)
     const [lastupdate, setLastUpdate] = useState(Date.now())
     const [timeleft, setTimeleft] = useState(product.timeleft)
 
     /*On fait un appel au back pour lancer un produit et récupérer son id*/ 
     const lancerProductionProduit = gql`
-    mutation LancerProductionProduit($lancerProductionProduitId: Int!) {
-        lancerProductionProduit(id: $lancerProductionProduitId) {
+    mutation LancerpionProduit($lancerpionProduitId: Int!) {
+        lancerpionProduit(id: $lancerpionProduitId) {
           id
         }
       }
     `
     //On met les conditions nécessaires et une exception pour appeler la mutation  
-    const [production] = useMutation(lancerProductionProduit,{
+    const [pion] = useMutation(lancerProductionProduit,{
         context: {
             headers:{
                 "x-user": username
@@ -45,7 +46,7 @@ type ProductProps = {
             }
         }
     )
-    // Fonction qui lance la production d'un produit avec la progress bar.
+    // Fonction qui lance la pion d'un produit avec la progress bar.
     function produireProduit(){
         if(product.timeleft == 0 && product.quantite > 0){
             product.timeleft = product.vitesse
@@ -79,6 +80,10 @@ type ProductProps = {
         return maxQtProduit
     }
 
+    function acheterProduit(){
+        onProductBuy(1, product)
+    }
+
     /* On fait une fonction qui calcule notre score, si le temps restant de notre produit
      n'est pas égal à 0, alors on update notre temps restant. Si le temps restant est 
      inférieur à 0, alors on regarde si un manager est débloqué. Si oui, on lance 
@@ -95,11 +100,12 @@ type ProductProps = {
                 setLancer(true)
                 product.timeleft = product.vitesse
             } else {
-                production({variables : {id: product.id}});
+                pion({variables : {id: product.id}});
                 product.timeleft = 0
                 setLancer(false)
             }
         }
+        onProductionDone(product)
     }
 
    return (
@@ -114,7 +120,7 @@ type ProductProps = {
         auto={product.managerUnlocked}
         orientation={Orientation.horizontal} />
         }
-        <button disabled={produitDisponible()} id={"acheterLeProduit" + product.id.toString()}> Acheter </button>
+        <button disabled={produitDisponible()} onClick={acheterProduit} id={"acheterLeProduit" + product.id.toString()}> Acheter </button>
     </div>
    )
 }

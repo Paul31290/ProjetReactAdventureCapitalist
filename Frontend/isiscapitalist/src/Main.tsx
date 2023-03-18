@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Main.css';
-import { Product, World } from './world';
+import { Palier, Product, World } from './world';
 import { transform } from './utils';
 import ProductComponent from './Product';
 import { gql, useMutation } from '@apollo/client';
+import ManagerComponent from './Manager';
 
 
 type MainProps = {
@@ -17,6 +18,7 @@ type MainProps = {
      }, [loadworld])
 
     const [money, setMoney] = useState(world.money)
+    const [showManager, setShowManager] = useState(false)
 
     const acheterQtProduit = gql`
     mutation AcheterQtProduit($acheterQtProduitId: Int!, $quantite: Int!) {
@@ -82,6 +84,33 @@ type MainProps = {
 
       achatProduit({ variables: {acheterQtProduitId: p.id, quantite: qt}})
       
+      world.products.forEach(product => {
+        product.paliers.forEach(palier => {
+          if(!palier.unlocked && palier.seuil <= p.quantite){
+            palier.unlocked = true
+            if(palier.typeratio = "vitesse"){
+              p.vitesse /= palier.ratio
+            } else {
+              p.revenu = p.vitesse/palier.ratio
+            }
+          }
+        })
+      }
+      )
+    }
+
+    function seeManagers(){
+      setShowManager(!showManager)
+    }
+
+    function hiringManager(manager: Palier){
+      world.money -= manager.seuil
+      setMoney(money - manager.seuil)
+
+      manager.unlocked = true
+      world.products[manager.idcible].managerUnlocked = true
+
+      engage({ variables: {name: manager.name}})
     }
   
     return (
@@ -102,14 +131,17 @@ type MainProps = {
         </div>
         <div className="main" />
           <div>liste des boutons de menu</div>
+            <button onClick={() => setShowManager(!showManager)}>{showManager ? 'Cacher les managers' : 'Afficher les managers'}</button>{
+              showManager && <ManagerComponent world={world} showManager = {showManager} hiringManager={hiringManager} seeManagers={seeManagers}/>
+            }
 
           <div className="product" />
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[0]} username={username} money = {world.money} />
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[1]} username={username} money = {world.money}/>
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[2]} username={username} money = {world.money} />
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[3]} username={username} money = {world.money}/>
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[4]} username={username} money = {world.money}/>
-            <ProductComponent onProductionDone={onProductionDone} product={world.products[5]} username={username} money = {world.money}/>
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[0]} username={username} money = {world.money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[1]} username={username} money = {world.money}/>
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[2]} username={username} money = {world.money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[3]} username={username} money = {world.money}/>
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[4]} username={username} money = {world.money}/>
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} product={world.products[5]} username={username} money = {world.money}/>
           </div>
         </>  
   )

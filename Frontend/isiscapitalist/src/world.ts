@@ -14,6 +14,7 @@ export class World {
     angelupgrades: Palier[]
     managers: Palier[]
     static manager: any
+    static products: any
 
     constructor() {
         this.products = [ ]
@@ -51,4 +52,5 @@ export class Palier {
     ratio: number = 0
     typeratio: string = ""
     unlocked: boolean = false
+    palier: any
 }

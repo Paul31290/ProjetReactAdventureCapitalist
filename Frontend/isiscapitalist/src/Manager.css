@@ -17,3 +17,8 @@
     left: 20%;
     /* a 20% de la gauche */
 }
+
+.managergrid {
+    display: grid;
+    grid-template-columns: 30% 30% 30% 20%;
+}
